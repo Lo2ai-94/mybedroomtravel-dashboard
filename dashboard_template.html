@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mybedroom.travel — داشبورد المحتوى</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06080b;--s1:#0d1017;--s2:#141820;--s3:#1c2230;
+  --b1:rgba(255,255,255,.06);--b2:rgba(255,255,255,.11);--b3:rgba(255,255,255,.18);
+  --t1:#eeece9;--t2:#7e8490;--t3:#3e4450;
+  --sky:#06b6d4;--skd:rgba(6,182,212,.12);--skb:rgba(6,182,212,.26);
+  --grn:#10b981;--gnd:rgba(16,185,129,.12);--gnb:rgba(16,185,129,.26);
+  --red:#f43f5e;--rdd:rgba(244,63,94,.12);--rdb:rgba(244,63,94,.26);
+  --amb:#f59e0b;--amd:rgba(245,158,11,.12);--ambb:rgba(245,158,11,.26);
+  --vio:#8b5cf6;--vid:rgba(139,92,246,.12);--vib:rgba(139,92,246,.26);
+  --r:11px;--r2:7px
+}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--t1);font-size:14px;min-height:100vh}
+.hdr{height:52px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--b1);background:rgba(6,8,11,.95);position:sticky;top:0;z-index:100;backdrop-filter:blur(18px)}
+.brand{display:flex;align-items:center;gap:9px}
+.bico{width:33px;height:33px;border-radius:8px;background:linear-gradient(135deg,var(--sky),var(--vio));display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.bname{font-size:14px;font-weight:900}.bname em{color:var(--sky);font-style:normal}
+.bsub{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.4px}
+.hbadge{display:flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;background:var(--gnd);border:1px solid var(--gnb);font-size:10px;font-weight:700;color:var(--grn)}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--grn);animation:bl 2s infinite}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.3}}
+.hclock{padding:3px 9px;border-radius:20px;background:var(--s2);border:1px solid var(--b1);font-size:10px;color:var(--t3);font-weight:600}
+.abar{padding:7px 18px;background:linear-gradient(90deg,var(--skd),var(--gnd));border-bottom:1px solid var(--skb);display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600}
+.ax{margin-right:auto;cursor:pointer;opacity:.5;font-size:16px;line-height:1}.ax:hover{opacity:1}
+.tabs{display:flex;padding:0 18px;border-bottom:1px solid var(--b1);background:var(--s1);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:10px 13px;font-size:12px;font-weight:700;font-family:'Cairo',sans-serif;border:none;background:transparent;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;transition:all .14s;white-space:nowrap;position:relative;bottom:-1px}
+.tab:hover{color:var(--t2)}.tab.on{color:var(--sky);border-bottom-color:var(--sky)}
+.pane{display:none;padding:18px 18px 70px}.pane.on{display:block;animation:fi .16s ease}
+@keyframes fi{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+.sh{font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--t3);margin:0 0 11px;display:flex;align-items:center;gap:7px}
+.sh::after{content:'';flex:1;height:1px;background:var(--b1)}
+.mb{margin-bottom:18px}.mt{margin-top:20px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px}
+.ga{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:9px}
+.gf{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:11px}
+.card{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r)}
+.card:hover{border-color:var(--b2)}
+.pad{padding:13px 15px}
+.kpi{padding:12px 14px;border-right-width:3px}
+.ksky{border-right-color:var(--sky)}.kgrn{border-right-color:var(--grn)}.kred{border-right-color:var(--red)}
+.kamb{border-right-color:var(--amb)}.kvio{border-right-color:var(--vio)}
+.kl{font-size:10px;font-weight:600;color:var(--t2);margin-bottom:3px;letter-spacing:.2px}
+.kv{font-size:20px;font-weight:900;letter-spacing:-.8px;line-height:1.1}
+.csky{color:var(--sky)}.cgrn{color:var(--grn)}.cred{color:var(--red)}.camb{color:var(--amb)}.cvio{color:var(--vio)}
+.ks{font-size:10px;color:var(--t3);margin-top:3px;line-height:1.4}
+.badge{display:inline-flex;font-size:10px;font-weight:700;padding:1px 6px;border-radius:5px;margin-top:3px}
+.bup{background:var(--gnd);color:var(--grn)}.bdn{background:var(--rdd);color:var(--red)}.bnu{background:var(--s3);color:var(--t2)}
+.mkrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:9px;margin-bottom:18px}
+.mk{padding:12px 14px;position:relative;overflow:hidden}
+.mkl{font-size:10px;color:var(--t2);font-weight:600;margin-bottom:3px}
+.mkv{font-size:17px;font-weight:900;letter-spacing:-.8px}
+.mks{font-size:10px;color:var(--t3);margin-top:2px}
+.mkbar{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--b1)}
+.mkfill{height:100%}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:var(--r2);border:none;font-family:'Cairo',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .14s}
+.btn:active{transform:scale(.97)}
+.bsky{background:var(--skd);border:1px solid var(--skb);color:var(--sky)}.bsky:hover{background:rgba(6,182,212,.2)}
+.bgrn{background:var(--gnd);border:1px solid var(--gnb);color:var(--grn)}.bgrn:hover{background:rgba(16,185,129,.2)}
+.bamb{background:var(--amd);border:1px solid var(--ambb);color:var(--amb)}.bamb:hover{background:rgba(245,158,11,.2)}
+.bgh{background:transparent;border:1px solid var(--b2);color:var(--t2)}.bgh:hover{background:var(--s2);color:var(--t1)}
+.bsld{background:var(--sky);color:#06080b;border:none}.bsld:hover{opacity:.87}
+.bsm{padding:4px 10px;font-size:11px;border-radius:6px}
+.bxs{padding:3px 7px;font-size:10px;border-radius:5px}
+.frow{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.flbl{font-size:11px;color:var(--t2);font-weight:600;white-space:nowrap}
+.fb{font-size:11px;padding:4px 10px;border-radius:20px;border:1px solid var(--b2);background:transparent;color:var(--t2);cursor:pointer;transition:all .14s;font-family:'Cairo',sans-serif;font-weight:600}
+.fb:hover{background:var(--s2)}.fb.on{background:var(--skd);color:var(--sky);border-color:var(--skb)}
+.pill{display:inline-block;padding:2px 7px;border-radius:20px;font-size:11px;font-weight:700}
+.ps{background:var(--gnd);color:var(--grn)}.pa{background:var(--amd);color:var(--amb)}.pw{background:var(--rdd);color:var(--red)}
+.tw{border-radius:var(--r);overflow:hidden;border:1px solid var(--b1)}
+.tbar{padding:9px 13px;background:var(--s1);border-bottom:1px solid var(--b1);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.tsc{max-height:420px;overflow-y:auto}
+.tsc::-webkit-scrollbar{width:4px}.tsc::-webkit-scrollbar-thumb{background:var(--b2);border-radius:3px}
+table{width:100%;border-collapse:collapse;background:var(--s1)}
+thead th{background:var(--s2);padding:8px 10px;font-size:10px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:var(--t3);text-align:right;border-bottom:1px solid var(--b1);white-space:nowrap;position:sticky;top:0;z-index:2;cursor:pointer;user-select:none}
+thead th:hover{color:var(--t1)}
+tbody tr{border-bottom:1px solid rgba(255,255,255,.03);transition:background .1s}
+tbody tr:hover{background:var(--s2)}
+td{padding:8px 10px;font-size:12px;vertical-align:middle}
+.trk{color:var(--t3);font-size:10px;font-weight:700;width:26px}
+.ttt{max-width:195px}.ttx{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--t1);text-decoration:none;font-weight:500}.ttx:hover{color:var(--sky)}
+.tdt{color:var(--t3);font-size:11px;white-space:nowrap}
+.tn{text-align:center;white-space:nowrap}
+tr.rs td:first-child{border-right:3px solid var(--grn)}.rs{background:rgba(16,185,129,.03)}
+tr.ra td:first-child{border-right:3px solid var(--amb)}
+tr.rw td:first-child{border-right:3px solid var(--red)}.rw{background:rgba(244,63,94,.03)}
+.ic{padding:14px 16px;transition:border-color .14s,transform .12s}
+.ic:hover{border-color:var(--skb);transform:translateY(-1px)}
+.ictag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-bottom:7px;display:inline-block}
+.ittl{font-size:13px;font-weight:700;color:var(--t1);margin-bottom:4px;line-height:1.4}
+.ihook{font-size:12px;color:var(--t2);margin-bottom:6px;font-style:italic;border-right:2px solid var(--sky);padding-right:8px;line-height:1.5}
+.iwhy{font-size:11px;color:var(--t3);border-top:1px solid var(--b1);padding-top:6px;margin-bottom:8px;line-height:1.5}
+.iact{display:flex;gap:5px;flex-wrap:wrap}
+.icm{font-size:10px;padding:2px 6px;border-radius:5px;background:var(--s3);color:var(--t2);display:inline-block;margin-bottom:7px;margin-left:4px}
+.hcard{background:var(--s2);border:1px solid var(--b2);border-radius:var(--r);padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:border-color .14s}
+.hcard:hover{border-color:var(--skb)}
+.hnum{font-size:9px;font-weight:700;color:var(--t3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px}
+.htxt{font-size:13px;font-weight:600;color:var(--t1);line-height:1.5;margin-bottom:5px}
+.capbox{background:var(--s2);border:1px solid var(--b2);border-radius:var(--r);padding:14px 16px}
+.captxt{font-size:13px;color:var(--t1);line-height:1.9;white-space:pre-wrap}
+.wkg{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-bottom:14px}
+.day{border-radius:var(--r);padding:10px;min-height:135px;border:1px solid var(--b1);background:var(--s1)}
+.day.best{border-color:var(--skb);background:rgba(6,182,212,.04)}
+.day.off{border-color:var(--rdb);background:rgba(244,63,94,.03)}
+.dname{font-size:10px;font-weight:700;color:var(--t2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.3px}
+.day.best .dname{color:var(--sky)}.day.off .dname{color:var(--red)}
+.dtype{font-size:11px;font-weight:700;color:var(--t1);margin-bottom:3px}
+.dtopic{font-size:10px;color:var(--t3);margin-bottom:4px;line-height:1.5}
+.dtime{font-size:10px;color:var(--sky);margin-bottom:3px;font-weight:600}
+.dcta{font-size:9px;padding:2px 5px;border-radius:5px;background:var(--s3);color:var(--t2);display:inline-block}
+.ab2{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:14px}
+.inp{width:100%;padding:9px 11px;background:var(--s2);border:1px solid var(--b2);border-radius:var(--r2);color:var(--t1);font-family:'Cairo',sans-serif;font-size:13px;outline:none;transition:border-color .14s}
+.inp:focus{border-color:var(--sky)}
+.inp::placeholder{color:var(--t3)}
+select.inp{cursor:pointer}
+textarea.inp{resize:vertical;min-height:68px;line-height:1.7}
+.inpl{font-size:11px;font-weight:600;color:var(--t2);margin-bottom:4px}
+.cbox{padding:14px 16px;margin-bottom:11px}
+.ctit{font-size:12px;font-weight:700;margin-bottom:11px;color:var(--t1)}
+.pi{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--b1);font-size:12px;color:var(--t2);line-height:1.6}
+.pi:last-child{border:none}
+.pico{flex-shrink:0;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px}
+.rcard{padding:14px 16px}
+.rrow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.rlbl{font-size:11px;color:var(--t2);min-width:90px}
+.rbar{flex:1;height:5px;background:var(--b2);border-radius:3px;overflow:hidden}
+.rbfill{height:100%;border-radius:3px}
+.rval{font-size:11px;font-weight:700;min-width:32px;text-align:left}
+.calc-r{margin-top:11px;padding:11px 14px;background:var(--skd);border:1px solid var(--skb);border-radius:var(--r2);font-size:13px;font-weight:600;color:var(--sky);line-height:1.7}
+.vd{display:inline-flex;gap:2px;vertical-align:middle}
+.vdot{width:5px;height:5px;border-radius:50%}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--b2);border-radius:4px}
+@media(max-width:700px){
+  .hdr,.tabs,.pane{padding-left:12px;padding-right:12px}
+  .g2,.g3,.ab2{grid-template-columns:1fr}
+  .wkg{grid-template-columns:repeat(2,1fr)}
+  .mkrow{grid-template-columns:repeat(2,1fr)}
+  .ga{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="brand">
+    <div class="bico">🛏️</div>
+    <div><div class="bname">mybedroom<em>.travel</em></div><div class="bsub">Content Intelligence · آخر 30 يوم</div></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="hbadge"><div class="dot"></div>LIVE</div>
+    <div class="hclock" id="clk"></div>
+  </div>
+</header>
+
+<div class="abar" id="abar">
+  <span>⚡</span>
+  <span>38 منشور · 1.7M مشاهدة · أعلى تفاعل 10.17% · أفضل فئة: أطفال 4.72% · Hook التحذير 4.73%</span>
+  <span class="ax" onclick="document.getElementById('abar').style.display='none'">×</span>
+</div>
+
+<nav class="tabs">
+  <button class="tab on" onclick="SW(0)">📊 لوحة التحكم</button>
+  <button class="tab" onclick="SW(1)">🏭 مصنع الريلز</button>
+  <button class="tab" onclick="SW(2)">🧠 توصيات AI</button>
+  <button class="tab" onclick="SW(3)">✍️ مصنع الكابشن</button>
+  <button class="tab" onclick="SW(4)">⚡ مولّد الـ Hook</button>
+  <button class="tab" onclick="SW(5)">📅 مخطط الأسبوع</button>
+  <button class="tab" onclick="SW(6)">🔬 مختبر A/B</button>
+  <button class="tab" onclick="SW(7)">📈 الشارتات</button>
+  <button class="tab" onclick="SW(8)">⭐ تقييم المحتوى</button>
+  <button class="tab" onclick="SW(9)">🏆 بنك النجاحات</button>
+</nav>
+
+<!-- ══ T0: DASHBOARD ══════════════════════════════════════════════ -->
+<div class="pane on" id="p0">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+    <div><div style="font-size:19px;font-weight:900">📊 لوحة التحكم</div>
+    <div style="font-size:12px;color:var(--t2);margin-top:2px">38 منشور · بيانات مباشرة من Instagram</div></div>
+    <div style="display:flex;gap:7px">
+      <button class="btn bsky" onclick="SW(1)">🏭 مصنع الريلز</button>
+      <button class="btn bamb" onclick="SW(2)">🧠 التوصيات</button>
+    </div>
+  </div>
+  <div class="sh mb">المؤشرات الرئيسية — آخر 30 يوم</div>
+  <div class="mkrow" id="kRow"></div>
+  <div class="sh mb">أداء الفئات</div>
+  <div class="ga mb" id="catG"></div>
+  <div class="sh mb">جدول المنشورات
+    <button class="btn bgh bxs" style="text-transform:none;letter-spacing:0;margin-right:auto" onclick="srtA('eng')">↕ ترتيب</button>
+  </div>
+  <div class="frow">
+    <span class="flbl">فلتر:</span>
+    <button class="fb on" data-f="all" onclick="FT(this)">الكل</button>
+    <button class="fb" data-f="s" onclick="FT(this)">ناجح</button>
+    <button class="fb" data-f="a" onclick="FT(this)">متوسط</button>
+    <button class="fb" data-f="w" onclick="FT(this)">ضعيف</button>
+    <button class="fb" data-f="bodrum" onclick="FT(this)">🏖️ بودروم</button>
+    <button class="fb" data-f="kids" onclick="FT(this)">👦 أطفال</button>
+    <button class="fb" data-f="istanbul" onclick="FT(this)">🕌 إسطنبول</button>
+    <button class="fb" data-f="REELS" onclick="FT(this)">📱 ريلز</button>
+  </div>
+  <div class="tw">
+    <div class="tbar"><span style="font-size:12px;font-weight:700" id="tblCount">38 منشور</span>
+      <span class="pill ps">ناجح ≥6%</span><span class="pill pa">متوسط</span><span class="pill pw">ضعيف ≤1.5%</span>
+    </div>
+    <div class="tsc"><table><thead><tr>
+      <th>#</th><th>المنشور</th><th onclick="srtA('date')">التاريخ</th>
+      <th onclick="srtA('views')">مشاهدات</th><th onclick="srtA('shares')">مشاركات</th>
+      <th onclick="srtA('saved')">حفظ</th><th onclick="srtA('inter')">تفاعل</th>
+      <th onclick="srtA('eng')">%تفاعل</th><th>الفئة</th><th>الأداء</th>
+    </tr></thead><tbody id="aTb"></tbody></table></div>
+  </div>
+  <div class="sh mt mb">الأنماط المكتشفة</div>
+  <div class="g2">
+    <div class="card pad" id="patG"></div>
+    <div class="card pad" id="patB"></div>
+  </div>
+</div>
+
+<!-- ══ T1: REEL FACTORY ══════════════════════════════════════════ -->
+<div class="pane" id="p1">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px">
+    <div><div style="font-size:18px;font-weight:800">🏭 مصنع الريلز</div>
+    <div style="font-size:12px;color:var(--t2);margin-top:2px">16+ فكرة مبنية على بياناتك الحقيقية</div></div>
+    <div style="display:flex;gap:7px">
+      <button class="btn bsld" onclick="genIdeas()">🎲 ولّد جديد</button>
+      <button class="btn bgh" onclick="expIdeas()">📤 تصدير</button>
+    </div>
+  </div>
+  <div class="frow">
+    <span class="flbl">الوجهة:</span>
+    <button class="fb on" data-d="all" onclick="FD(this)">الكل</button>
+    <button class="fb" data-d="bodrum" onclick="FD(this)">🏖️ بودروم</button>
+    <button class="fb" data-d="kids" onclick="FD(this)">👦 أطفال</button>
+    <button class="fb" data-d="antalya" onclick="FD(this)">🌴 أنطاليا</button>
+    <button class="fb" data-d="istanbul" onclick="FD(this)">🕌 إسطنبول</button>
+    <button class="fb" data-d="fethiye" onclick="FD(this)">🗺️ فتحية</button>
+  </div>
+  <div class="frow">
+    <span class="flbl">الـ Hook:</span>
+    <button class="fb on" data-h="all" onclick="FH(this)">الكل</button>
+    <button class="fb" data-h="warn" onclick="FH(this)">⚠️ تحذيري</button>
+    <button class="fb" data-h="question" onclick="FH(this)">❓ سؤال</button>
+    <button class="fb" data-h="secret" onclick="FH(this)">🤫 سر</button>
+    <button class="fb" data-h="fomo" onclick="FH(this)">⏰ FOMO</button>
+    <span class="flbl" style="margin-right:7px">فيروسية:</span>
+    <button class="fb" id="vbtn" onclick="TV(this)">🔥 عالية فقط</button>
+  </div>
+  <div id="iGrid" class="gf"></div>
+</div>
+
+<!-- ══ T2: AI TIPS ═══════════════════════════════════════════════ -->
+<div class="pane" id="p2">
+  <div style="font-size:18px;font-weight:800;margin-bottom:4px">🧠 توصيات AI — مبنية على بياناتك</div>
+  <div style="font-size:12px;color:var(--t2);margin-bottom:16px">كل توصية مستخرجة من تحليل 38 منشور حقيقي</div>
+  <div style="background:linear-gradient(135deg,var(--skd),var(--vid));border:1px solid var(--skb);border-radius:var(--r);padding:16px 18px;margin-bottom:18px;display:flex;gap:12px">
+    <div style="font-size:22px;flex-shrink:0">🎯</div>
+    <div>
+      <div style="font-size:10px;font-weight:700;color:var(--sky);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">التحليل الرئيسي</div>
+      <div style="font-size:14px;font-weight:700;color:var(--t1);line-height:1.65">أطفال = أعلى فئة بـ4.72% تفاعل و62K مشاهدة متوسط. Hook التحذير 4.73% و السؤال 4.66% — أنجح نوعين في حسابك. إسطنبول والشمال التركي تستهلك 24% من المحتوى لكن بأضعف أداء (2.5-3%). بودروم ثاني بـ3.99% لكن أعلى مشاهدات (75K متوسط). إعادة توزيع الجهد = +50% نتائج بدون محتوى إضافي.</div>
+    </div>
+  </div>
+  <div style="background:var(--gnd);border:1px solid var(--gnb);border-radius:var(--r);padding:13px 16px;margin-bottom:18px;display:flex;gap:10px">
+    <span style="font-size:18px;flex-shrink:0">⚡</span>
+    <div>
+      <div style="font-size:10px;font-weight:700;color:var(--grn);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">افعل هذا اليوم</div>
+      <div style="font-size:13px;color:var(--t1);font-weight:500;line-height:1.65">انشر ريل أطفال تحذيري اليوم أو غداً الساعة 5-8 صباحاً أو 16:00. أطفال + تحذير = أعلى معادلة في بياناتك (10.17% أعلى ريل). تجنب إسطنبول والشمال هذا الأسبوع.</div>
+    </div>
+  </div>
+  <div class="sh mb">توصيات مرتبة بالأولوية</div>
+  <div class="gf" id="recsG"></div>
+  <div class="sh mt mb">أوقف هذا فوراً</div>
+  <div style="background:var(--rdd);border:1px solid var(--rdb);border-radius:var(--r);padding:14px 17px" id="stopBox"></div>
+  <div class="sh mt mb">الأنماط المكتشفة</div>
+  <div class="g2">
+    <div class="card pad" id="patG2"></div>
+    <div class="card pad" id="patB2"></div>
+  </div>
+</div>
+
+<!-- ══ T3: CAPTION FACTORY ══════════════════════════════════════ -->
+<div class="pane" id="p3">
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <div style="flex:1;min-width:240px">
+      <div class="sh" style="margin-bottom:12px">إعدادات الكابشن</div>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <div><div class="inpl">الوجهة / الفندق</div><input class="inp" id="cd" placeholder="مثال: Vogue Bodrum، Nickelodeon…"/></div>
+        <div><div class="inpl">نوع المحتوى</div>
+          <select class="inp" id="ct">
+            <option value="warn">⚠️ تحذيري — الأقوى في حسابك</option>
+            <option value="question">❓ سؤال / تصويت</option>
+            <option value="luxury">💎 رفاهية</option>
+            <option value="compare">⚖️ مقارنة بين خيارين</option>
+            <option value="family">👨‍👩‍👦 عائلي + أطفال</option>
+            <option value="couple">💑 أزواج / شهر عسل</option>
+            <option value="secret">🤫 سر / اكتشاف</option>
+            <option value="fomo">⏰ FOMO</option>
+          </select></div>
+        <div><div class="inpl">CTA</div>
+          <select class="inp" id="cc">
+            <option value="com">💬 اكتب كلمة بالكومنت</option>
+            <option value="wa">📱 واتساب مباشر</option>
+            <option value="sav">🔖 احفظ الريل</option>
+            <option value="shr">📤 شارك</option>
+          </select></div>
+        <div><div class="inpl">مزايا الفندق (اختياري)</div>
+          <textarea class="inp" id="cn" placeholder="شاطئ خاص، مسبح لانهائي، دخول ملاهي…"></textarea></div>
+        <button class="btn bsld" style="width:100%;justify-content:center;padding:10px" onclick="GC()">✨ توليد الكابشن</button>
+      </div>
+    </div>
+    <div style="flex:1.5;min-width:270px">
+      <div class="sh" style="margin-bottom:10px">الكابشن الجاهز</div>
+      <div id="capOut"><div style="text-align:center;padding:40px;color:var(--t3)"><div style="font-size:28px;margin-bottom:8px">✍️</div>أدخل التفاصيل وسيظهر الكابشن</div></div>
+      <div class="sh mt" style="margin-bottom:10px">أنجح 5 كابشنات في حسابك</div>
+      <div id="hbnk"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ T4: HOOK GEN ══════════════════════════════════════════════ -->
+<div class="pane" id="p4">
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <div style="flex:1;min-width:230px">
+      <div class="sh" style="margin-bottom:12px">إعدادات الـ Hook</div>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <div><div class="inpl">الوجهة / الفندق</div><input class="inp" id="htopic" placeholder="مثال: Vogue Bodrum…"/></div>
+        <div><div class="inpl">نوع الـ Hook</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:3px" id="htf">
+            <button class="fb on" data-ht="all" onclick="HT(this)">الكل</button>
+            <button class="fb" data-ht="warn" onclick="HT(this)">⚠️ تحذير</button>
+            <button class="fb" data-ht="question" onclick="HT(this)">❓ سؤال</button>
+            <button class="fb" data-ht="secret" onclick="HT(this)">🤫 سر</button>
+            <button class="fb" data-ht="fomo" onclick="HT(this)">⏰ FOMO</button>
+            <button class="fb" data-ht="luxury" onclick="HT(this)">💎 رفاهية</button>
+            <button class="fb" data-ht="compare" onclick="HT(this)">⚖️ مقارنة</button>
+          </div></div>
+        <div><div class="inpl">العدد</div>
+          <select class="inp" id="hcnt"><option value="5">5</option><option value="10" selected>10</option><option value="15">15</option></select></div>
+        <button class="btn bsld" style="width:100%;justify-content:center;padding:10px" onclick="GH()">⚡ ولّد الـ Hooks</button>
+        <div style="background:var(--s2);border:1px solid var(--b1);border-radius:var(--r2);padding:10px 12px;font-size:11px;color:var(--t3);line-height:1.65">
+          💡 بياناتك: تحذير 4.73% · سؤال 4.66% · FOMO +35% · سر 2.33%<br>
+          أنجح Hook في حسابك: "أكبر غلطة بتعملها العائلات"
+        </div>
+      </div>
+    </div>
+    <div style="flex:2;min-width:270px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px">
+        <div class="sh" style="margin:0;flex:1">الـ Hooks المولّدة</div>
+        <button class="btn bgh bsm" onclick="CAH()">📋 نسخ الكل</button>
+      </div>
+      <div id="hout"><div style="text-align:center;padding:44px;color:var(--t3)"><div style="font-size:28px;margin-bottom:8px">⚡</div>أدخل الموضوع واضغط ولّد</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ T5: WEEK PLANNER ══════════════════════════════════════════ -->
+<div class="pane" id="p5">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px">
+    <div><div style="font-size:16px;font-weight:800">📅 مخطط أسبوع المحتوى</div>
+    <div style="font-size:12px;color:var(--t2);margin-top:2px">مبني على بياناتك الفعلية</div></div>
+    <div style="display:flex;gap:7px">
+      <button class="btn bsky" onclick="autoW()">🤖 ملء ذكي</button>
+      <button class="btn bgh" onclick="EW()">📤 تصدير</button>
+    </div>
+  </div>
+  <div style="background:var(--skd);border:1px solid var(--skb);border-radius:var(--r);padding:12px 15px;margin-bottom:14px">
+    <div style="font-size:10px;font-weight:700;color:var(--sky);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">🎯 هدف الأسبوع</div>
+    <div style="font-size:13px;color:var(--t1);line-height:1.6;font-weight:500">2 ريلز أطفال + 2 ريلز بودروم + Hook تحذيري في كل ريل + نشر 5:00-8:00ص أو 16:00 = متوقع 180K+ مشاهدة بناءً على بياناتك.</div>
+  </div>
+  <div class="wkg" id="wkGrid"></div>
+  <div class="sh mb">كابشن جاهز — اضغط للنسخ</div>
+  <div id="wkCaps"></div>
+  <div class="sh mt mb">حاسبة التوقعات</div>
+  <div style="background:var(--s2);border:1px solid var(--b2);border-radius:var(--r);padding:14px 16px">
+    <div class="g2" style="gap:11px">
+      <div><div class="inpl">عدد الريلز</div><input class="inp" type="number" id="cln" value="4" min="1" max="14" oninput="DC()"/></div>
+      <div><div class="inpl">الفئة الأساسية</div>
+        <select class="inp" id="ccat" onchange="DC()">
+          <option value="kids">👦 أطفال (62K متوسط)</option>
+          <option value="bodrum">🏖️ بودروم (75K متوسط)</option>
+          <option value="antalya">🌴 أنطاليا (10K متوسط)</option>
+          <option value="istanbul">🕌 إسطنبول (10K متوسط)</option>
+          <option value="fethiye">🗺️ فتحية (12K متوسط)</option>
+        </select></div>
+    </div>
+    <div class="calc-r" id="calcR" style="display:none"></div>
+  </div>
+</div>
+
+<!-- ══ T6: AB TEST ═══════════════════════════════════════════════ -->
+<div class="pane" id="p6">
+  <div style="margin-bottom:14px">
+    <div style="font-size:16px;font-weight:800">🔬 مختبر A/B</div>
+    <div style="font-size:12px;color:var(--t2);margin-top:2px">قارن بين Hook أو وجهة — النقاط من بياناتك الفعلية</div>
+  </div>
+  <div class="ab2">
+    <div class="card pad">
+      <div style="font-size:10px;font-weight:800;padding:2px 9px;border-radius:5px;display:inline-block;margin-bottom:9px;background:var(--skd);color:var(--sky)">النسخة A</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div><div class="inpl">Hook A</div><textarea class="inp" id="aah" placeholder="Hook النسخة A…" style="min-height:60px"></textarea></div>
+        <div><div class="inpl">الوجهة</div>
+          <select class="inp" id="aad">
+            <option value="4.72">👦 أطفال (4.72%)</option>
+            <option value="3.99">🏖️ بودروم (3.99%)</option>
+            <option value="2.78">🌴 أنطاليا (2.78%)</option>
+            <option value="3.06">🗺️ فتحية (3.06%)</option>
+            <option value="3.02">🕌 إسطنبول (3.02%)</option>
+            <option value="2.47">🌲 الشمال (2.47%)</option>
+          </select></div>
+        <div><div class="inpl">نوع Hook</div>
+          <select class="inp" id="aat">
+            <option value="1.45">⚠️ تحذير (+45%)</option>
+            <option value="1.4">❓ سؤال (+40%)</option>
+            <option value="1.35">⏰ FOMO (+35%)</option>
+            <option value="1.2">⚖️ مقارنة (+20%)</option>
+            <option value="1.1">💎 رفاهية (+10%)</option>
+            <option value="0.9">🤫 سر (-10%)</option>
+          </select></div>
+        <div><div class="inpl">وقت النشر</div>
+          <select class="inp" id="aatm">
+            <option value="1.4">5:00-8:00 ص (الأفضل)</option>
+            <option value="1.3">16:00</option>
+            <option value="1.0">12:00</option>
+            <option value="0.85">20:00 م</option>
+          </select></div>
+      </div>
+    </div>
+    <div class="card pad">
+      <div style="font-size:10px;font-weight:800;padding:2px 9px;border-radius:5px;display:inline-block;margin-bottom:9px;background:var(--vid);color:var(--vio)">النسخة B</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div><div class="inpl">Hook B</div><textarea class="inp" id="abh" placeholder="Hook النسخة B…" style="min-height:60px"></textarea></div>
+        <div><div class="inpl">الوجهة</div>
+          <select class="inp" id="abd">
+            <option value="4.72">👦 أطفال</option>
+            <option value="3.99" selected>🏖️ بودروم</option>
+            <option value="2.78">🌴 أنطاليا</option>
+            <option value="3.06">🗺️ فتحية</option>
+            <option value="3.02">🕌 إسطنبول</option>
+            <option value="2.47">🌲 الشمال</option>
+          </select></div>
+        <div><div class="inpl">نوع Hook</div>
+          <select class="inp" id="abt">
+            <option value="1.45">⚠️ تحذير</option>
+            <option value="1.4">❓ سؤال</option>
+            <option value="1.35" selected>⏰ FOMO</option>
+            <option value="1.2">⚖️ مقارنة</option>
+            <option value="1.1">💎 رفاهية</option>
+            <option value="0.9">🤫 سر</option>
+          </select></div>
+        <div><div class="inpl">وقت النشر</div>
+          <select class="inp" id="abtm">
+            <option value="1.4">5:00-8:00 ص</option>
+            <option value="1.3" selected>16:00</option>
+            <option value="1.0">12:00</option>
+            <option value="0.85">20:00 م</option>
+          </select></div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-bottom:14px">
+    <button class="btn bsld" style="padding:10px 30px;font-size:14px" onclick="RAB()">⚡ قارن وحدّد الفائز</button>
+  </div>
+  <div id="abRes"></div>
+  <div class="sh mt mb">سجل الاختبارات</div>
+  <div id="abHist"><div style="text-align:center;padding:16px;color:var(--t3);font-size:12px">لا يوجد اختبارات بعد</div></div>
+</div>
+
+<!-- ══ T7: CHARTS ════════════════════════════════════════════════ -->
+<div class="pane" id="p7">
+  <div class="frow mb">
+    <span class="flbl">عرض:</span>
+    <button class="fb on" data-cm="all" onclick="CM(this)">الكل (38)</button>
+    <button class="fb" data-cm="bodrum" onclick="CM(this)">🏖️ بودروم</button>
+    <button class="fb" data-cm="kids" onclick="CM(this)">👦 أطفال</button>
+    <button class="fb" data-cm="top10" onclick="CM(this)">الأعلى 10</button>
+  </div>
+  <div class="cbox card mb"><div class="ctit">📊 مشاهدات كل منشور</div><div id="bSvg"></div></div>
+  <div class="cbox card mb"><div class="ctit">📈 ترند نسبة التفاعل</div><div id="lSvg"></div></div>
+  <div class="g2">
+    <div class="cbox card"><div class="ctit">⚡ تفاعل الفئات</div><div id="cSvg"></div></div>
+    <div class="cbox card"><div class="ctit">⚡ فاعلية نوع الـ Hook</div><div id="hkSvg"></div></div>
+  </div>
+</div>
+
+<!-- ══ T8: CONTENT RATING ══════════════════════════════════════ -->
+<div class="pane" id="p8">
+  <div style="margin-bottom:14px">
+    <div style="font-size:16px;font-weight:800">⭐ تقييم المحتوى قبل النشر</div>
+    <div style="font-size:12px;color:var(--t2);margin-top:2px">نتيجة مبنية على بياناتك الفعلية</div>
+  </div>
+  <div class="g2" style="margin-bottom:18px">
+    <div>
+      <div class="sh" style="margin-bottom:12px">أدخل تفاصيل الريل</div>
+      <div style="display:flex;flex-direction:column;gap:9px">
+        <div><div class="inpl">Hook / السطر الأول</div><input class="inp" id="rhook" placeholder="أول جملة في الريل…"/></div>
+        <div><div class="inpl">الفئة</div>
+          <select class="inp" id="rdest">
+            <option value="kids">👦 أطفال (4.72%)</option>
+            <option value="bodrum">🏖️ بودروم (3.99%)</option>
+            <option value="fethiye">🗺️ فتحية (3.06%)</option>
+            <option value="istanbul">🕌 إسطنبول (3.02%)</option>
+            <option value="antalya">🌴 أنطاليا (2.78%)</option>
+            <option value="north">🌲 الشمال (2.47%)</option>
+          </select></div>
+        <div><div class="inpl">نوع الـ Hook</div>
+          <select class="inp" id="rtype">
+            <option value="warn">⚠️ تحذير (4.73% متوسط)</option>
+            <option value="question">❓ سؤال (4.66%)</option>
+            <option value="fomo">⏰ FOMO</option>
+            <option value="compare">⚖️ مقارنة</option>
+            <option value="luxury">💎 رفاهية</option>
+            <option value="secret">🤫 سر (2.33%)</option>
+          </select></div>
+        <div><div class="inpl">وقت النشر</div>
+          <select class="inp" id="rtime">
+            <option value="16">5:00-8:00 ص (الأفضل في بياناتك)</option>
+            <option value="7">16:00</option>
+            <option value="12">12:00</option>
+            <option value="20">8:00 م</option>
+          </select></div>
+        <button class="btn bsld" style="width:100%;justify-content:center;padding:10px" onclick="RATE()">⭐ قيّم الريل</button>
+      </div>
+    </div>
+    <div>
+      <div class="sh" style="margin-bottom:12px">نتيجة التقييم</div>
+      <div id="rateOut"><div style="text-align:center;padding:44px;color:var(--t3)"><div style="font-size:28px;margin-bottom:8px">⭐</div>أدخل تفاصيل الريل</div></div>
+    </div>
+  </div>
+  <div class="sh mb">مقارنة الفئات</div>
+  <div class="ga mb" id="catCmp"></div>
+</div>
+
+<!-- ══ T9: SUCCESS BANK ══════════════════════════════════════════ -->
+<div class="pane" id="p9">
+  <div style="margin-bottom:14px">
+    <div style="font-size:16px;font-weight:800">🏆 بنك النجاحات</div>
+    <div style="font-size:12px;color:var(--t2);margin-top:2px">أنجح 10 منشورات — تشريح كامل</div>
+  </div>
+  <div id="succBank" style="display:flex;flex-direction:column;gap:11px"></div>
+</div>
+
+<!-- ════════════════════════════════════════ JS ════════════════════ -->
+<script>
+(function(){
+"use strict";
+var _D=JSON.parse(atob("XDATAX"));
+var P=_D.posts,S=_D.stats,CS=_D.cat_stats,HS=_D.hook_stats,WA=_D.wd_avg;
+var WDN=["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+var CLBL={bodrum:"🏖️ بودروم",kids:"👦 أطفال",antalya:"🌴 أنطاليا",istanbul:"🕌 إسطنبول",fethiye:"🗺️ فتحية",north:"🌲 الشمال",other:"📍 أخرى"};
+var CCLR={bodrum:"var(--sky)",kids:"var(--grn)",antalya:"var(--red)",istanbul:"var(--vio)",fethiye:"#06b6d4",north:"#14b8a6",other:"var(--amb)"};
+var CBH={warn:"#f43f5e",question:"#06b6d4",fomo:"#f59e0b",compare:"#8b5cf6",luxury:"#a855f7",secret:"#6366f1",other:"#7e8490"};
+function F(n){return n>=1e6?(n/1e6).toFixed(1)+"M":n>=1000?(n/1000).toFixed(n>=1e4?0:1)+"K":String(Math.round(n)||0);}
+function pf(e){return e>=6?"s":e>=2?"a":"w";}
+var PPC={s:"ps",a:"pa",w:"pw"},PRC={s:"rs",a:"ra",w:"rw"},PLB={s:"ناجح",a:"متوسط",w:"ضعيف"};
+function EC(p){return p==="s"?"var(--grn)":p==="a"?"var(--amb)":"var(--red)";}
+function G(id){return document.getElementById(id);}
+function QA(s){return Array.from(document.querySelectorAll(s));}
+function CPY(t,btn){try{navigator.clipboard.writeText(t).then(function(){if(!btn)return;var o=btn.textContent;btn.textContent="✅";setTimeout(function(){btn.textContent=o;},1800);});}catch(e){}}
+function VD(s){var h="<span class='vd'>";for(var i=0;i<5;i++)h+="<span class='vdot' style='background:"+(i<s?"var(--grn)":"var(--b1)")+"'></span>";return h+"</span>";}
+// CLOCK
+(function tick(){var n=new Date(),e=G("clk");if(e)e.textContent=WDN[n.getDay()]+" "+("0"+n.getHours()).slice(-2)+":"+("0"+n.getMinutes()).slice(-2);setTimeout(tick,30000);})();
+// TABS
+var CB=false;
+function SW(i){QA(".pane").forEach(function(p,j){p.classList.toggle("on",i===j);});QA(".tab").forEach(function(t,j){t.classList.toggle("on",i===j);});if(i===7&&!CB){BC();CB=true;}}
+
+// ── T0: DASHBOARD ────────────────────────────────────────────────
+(function(){
+  var h="";
+  function MK(l,v,c,sub,w,bc){return'<div class="mk card"><div class="mkl">'+l+'</div><div class="mkv" style="color:'+c+'">'+v+'</div><div class="mks">'+sub+'</div><div class="mkbar"><div class="mkfill" style="width:'+Math.min(w,100)+'%;background:'+bc+'"></div></div></div>';}
+  G("kRow").innerHTML=
+    MK("إجمالي المشاهدات",F(S.total_views),"var(--sky)",F(Math.round(S.total_views/S.n))+"/منشور",Math.min(S.total_views/2000000*100,100),"var(--sky)")+
+    MK("إجمالي التفاعلات",F(S.total_inter),"var(--grn)",F(Math.round(S.total_inter/S.n))+"/منشور",Math.min(S.total_inter/50000*100,100),"var(--grn)")+
+    MK("متوسط التفاعل",S.avg_eng+"%","var(--amb)","أعلى: "+S.top_eng+"%",S.avg_eng/12*100,"var(--amb)")+
+    MK("إجمالي المشاركات",F(S.total_shares),"var(--vio)",F(Math.round(S.total_shares/S.n))+"/منشور",Math.min(S.total_shares/40000*100,100),"var(--vio)")+
+    MK("إجمالي الحفظ",F(S.total_saved),"var(--red)","نية حجز حقيقية",Math.min(S.total_saved/30000*100,100),"var(--red)")+
+    MK("إجمالي المنشورات",S.n+" منشور","var(--sky)",S.n_reels+" ريلز · "+S.n_carousel+" كاروسيل",100,"var(--sky)");
+  // Cat grid
+  G("catG").innerHTML=Object.keys(CS).sort(function(a,b){return CS[b].avg_eng-CS[a].avg_eng;}).map(function(k){
+    var s=CS[k],c=CCLR[k]||"var(--t2)";
+    return'<div class="card" style="padding:11px 13px;border-right:3px solid '+c+'">'+
+      '<div style="font-size:10px;font-weight:700;color:'+c+';margin-bottom:4px">'+(CLBL[k]||k)+' · '+s.n+' منشور</div>'+
+      '<div style="font-size:18px;font-weight:900;color:'+c+';margin-bottom:3px">'+s.avg_eng+'%</div>'+
+      '<div style="height:3px;background:var(--b1);border-radius:2px;margin-bottom:4px;overflow:hidden"><div style="height:100%;width:'+s.avg_eng/8*100+'%;background:'+c+'"></div></div>'+
+      '<div style="font-size:10px;color:var(--t3)">'+F(s.avg_views)+' متوسط مشاهدات</div>'+
+      '<div style="font-size:10px;font-weight:700;margin-top:3px;color:'+(s.avg_eng>=4.5?"var(--grn)":s.avg_eng<3?"var(--red)":"var(--amb)")+'">'+(s.avg_eng>=4.5?"↑ ركّز هنا":s.avg_eng<3?"↓ قلّل":"◆ حافظ")+'</div></div>';
+  }).join("");
+  buildTbl();
+  // Patterns
+  function PI(bg,ic,h){return'<div class="pi"><div class="pico" style="background:'+bg+'">'+ic+'</div><div>'+h+'</div></div>';}
+  G("patG").innerHTML='<div style="font-size:12px;font-weight:700;margin-bottom:9px">✅ ما اشتغل</div>'+
+    PI("var(--gnd)","👦","<b>أطفال = الفئة الذهبية</b> — 4.72% تفاعل و62K مشاهدة. أولويتك الأولى.")+
+    PI("var(--gnd)","⚠️","<b>Hook التحذير والسؤال</b> — 4.73% و4.66%. أنجح نوعين في بياناتك.")+
+    PI("var(--gnd)","🌅","<b>النشر الصباحي 5-8 ص</b> — أعلى أداء في بياناتك بشكل واضح.")+
+    PI("var(--gnd)","🏖️","<b>بودروم = أعلى مشاهدات</b> — 75K متوسط مشاهدات رغم 3.99% تفاعل.");
+  G("patB").innerHTML='<div style="font-size:12px;font-weight:700;margin-bottom:9px">❌ تجنب</div>'+
+    PI("var(--rdd)","🌲","<b>الشمال التركي = أضعف فئة</b> — 2.47% فقط. 3 منشورات بنتائج ضعيفة.")+
+    PI("var(--rdd)","🕌","<b>إسطنبول الزائد</b> — 6 منشورات بـ3.02%. أقل من فئة أطفال بـ56%.")+
+    PI("var(--rdd)","🤫","<b>Hook السر</b> — أضعف نوع في بياناتك (2.33%). تجنبه.")+
+    PI("var(--rdd)","🌙","<b>النشر المسائي</b> — بيانات 20:00 أضعف من الصباح والعصر.");
+})();
+var AS="eng",AD=-1,AF="all";
+function srtA(k){if(AS===k)AD*=-1;else{AS=k;AD=-1;}buildTbl();}
+function FT(b){QA("#p0 .frow .fb[data-f]").forEach(function(x){x.classList.remove("on");});b.classList.add("on");AF=b.dataset.f;buildTbl();}
+function buildTbl(){
+  var d=[].concat(P);
+  if(AF==="s")d=d.filter(function(r){return r.eng>=6;});
+  else if(AF==="a")d=d.filter(function(r){return r.eng>=2&&r.eng<6;});
+  else if(AF==="w")d=d.filter(function(r){return r.eng<2;});
+  else if(AF==="REELS")d=d.filter(function(r){return r.type==="REELS";});
+  else if(AF!=="all")d=d.filter(function(r){return r.cat===AF;});
+  d.sort(function(a,b){return((b[AS]||0)-(a[AS]||0))*AD;});
+  G("tblCount").textContent=d.length+" منشور";
+  G("aTb").innerHTML=d.map(function(r,i){
+    var p=pf(r.eng);
+    var tl=r.url?'<a class="ttx" href="'+r.url+'" target="_blank">'+r.cap.slice(0,42)+'…</a>':'<span class="ttx">'+r.cap.slice(0,42)+'…</span>';
+    return'<tr class="'+PRC[p]+'"><td class="trk">'+(i+1)+'</td><td class="ttt">'+tl+'</td><td class="tdt">'+r.date+'</td>'+
+      '<td class="tn">'+F(r.views)+'</td><td class="tn">'+F(r.shares)+'</td><td class="tn">'+F(r.saved)+'</td>'+
+      '<td class="tn">'+F(r.inter)+'</td><td class="tn"><b style="color:'+EC(p)+'">'+r.eng+'%</b></td>'+
+      '<td class="tn" style="font-size:10px;color:'+(CCLR[r.cat]||"var(--t3)")+'">'+((CLBL[r.cat]||r.cat).split(' ').slice(0,2).join(' '))+'</td>'+
+      '<td class="tn"><span class="pill '+PPC[p]+'">'+PLB[p]+'</span></td></tr>';
+  }).join("");
+}
+
+// ── T1: REEL FACTORY ─────────────────────────────────────────────
+var IDEAS=[
+  {h:"warn",d:"kids",t:"أكبر غلطة بتعملها عيلتك هالصيف — الكل بيحجز نيكولوديون بآخر لحظة ويدفع أكتر بـ 40%",hk:"الأذكياء حجزوا من 3 شهور بأقل سعر..",w:"نفس النمط حقق 10.17% و32K في حسابك",v:5,tm:"5:00-8:00 ص"},
+  {h:"warn",d:"kids",t:"لا تحجز لاند أوف ليجندز بدون ما تعرف هذا الشيء — والأهل بيندمون دائماً",hk:"90% منهم بيعملوا هالغلطة ويدفعوا أكثر..",w:"Hook تحذير + أطفال = أعلى معادلة (10.17%)",v:5,tm:"7:00 ص"},
+  {h:"question",d:"kids",t:"من 1 إلى 10 — كيف تقيّم تجربة أطفالك في هذا المنتجع؟",hk:"الجواب اللي كسر التوقعات..",w:"سؤال التقييم حقق 8.47% و237K في حسابك",v:5,tm:"10:00 ص"},
+  {h:"warn",d:"bodrum",t:"مفكر بودروم غالية وراح تفلسك هالصيف؟ — الحل موجود",hk:"منتجع La Blanche كسر هذه القاعدة..",w:"نفس الريل حقق 7.04% و169K",v:5,tm:"16:00"},
+  {h:"warn",d:"bodrum",t:"لا تحجز منتجع ممل لأطفالك — خليهم يعيشون الحلم",hk:"مكان واحد يجمع ملاهي + رفاهية 5 نجوم..",w:"أعلى ريل في بياناتك 6.7% و453K مشاهدة",v:5,tm:"6:00 ص"},
+  {h:"warn",d:"kids",t:"أكبر كذبة بتسمعها — بودروم ممل للأطفال",hk:"الفيديو يحكي القصة كاملة — ملاهي وألعاب مائية..",w:"نفس الأسلوب حقق 3.07% و61K",v:4,tm:"15:37"},
+  {h:"question",d:"bodrum",t:"برأيك أيش أفضل — Vogue Bodrum أو La Blanche؟",hk:"جربت الاثنين وعندي رأي مختلف..",w:"سؤال المقارنة يولّد تعليقات ضخمة",v:4,tm:"16:00"},
+  {h:"warn",d:"istanbul",t:"أكبر غلطة بيعملها العرسان — الحجز العشوائي في إسطنبول",hk:"شهر العسل لا يتحمل مفاجآت..",w:"إسطنبول العرسان حقق 2.96% و7K — يحتاج تحذير قوي",v:3,tm:"9:00 ص"},
+  {h:"question",d:"bodrum",t:"تحذير من قلب الحدث — بودروم Full الآن هالصيف",hk:"إذا ما حجزت بعد، رح تدفع ضعف السعر..",w:"FOMO + تحذير واقعي = مصداقية + تحويل",v:5,tm:"7:00 ص"},
+  {h:"warn",d:"antalya",t:"أكبر خطأ عند حجز منتجع في أنطاليا — تحجز من مواقع وتدفع أكثر",hk:"نحن بنضمن لك أقل سعر من بوكينج..",w:"نفس الريل حقق 3.11% و11K",v:4,tm:"16:00"},
+  {h:"secret",d:"bodrum",t:"المنتجع اللي يحجزه كبار رجال الأعمال في بودروم — سر",hk:"ما توقعت إن السعر يكون بهالمستوى..",w:"سر + رفاهية = حفظ عالٍ = نية حجز",v:4,tm:"8:00 ص"},
+  {h:"fomo",d:"bodrum",t:"آخر غرف بودروم للصيف — مين استحق؟",hk:"كل يوم تتأخر = سعر أعلى وغرف أقل..",w:"FOMO + واقعي = حجز فوري",v:4,tm:"7:00 ص"},
+  {h:"warn",d:"fethiye",t:"أكبر غلطة — تأجل حجز غرفة بمسبح خاص في فتحية",hk:"الغرف تطير! ووفرنالك عروض حصرية..",w:"فتحية حقق 3.06% — يحتاج Hook تحذيري قوي",v:4,tm:"10:00 ص"},
+  {h:"question",d:"kids",t:"نيكولوديون أو لاند أوف ليجندز — ما الفرق الحقيقي؟",hk:"جربت الاثنين وعندي رأي مختلف..",w:"مقارنة + أطفال = تعليقات ضخمة",v:5,tm:"9:00 ص"},
+  {h:"warn",d:"kids",t:"أكبر كابوس للآباء في السفر — الركض ورا الأطفال بالمسابح",hk:"منتجع Granada Luxury Belek حل هالمشكلة..",w:"أطفال + مشكلة حقيقية = تفاعل عالي",v:5,tm:"14:00"},
+  {h:"question",d:"bodrum",t:"بودروم أو فتحية — ما الأفضل لصيف 2026؟",hk:"الجواب صدمني بعد ما زرتهم الاثنين..",w:"تصويت + مقارنة = تعليقات ضخمة",v:4,tm:"16:00"},
+];
+var CUR=[].concat(IDEAS),ID="all",IH="all",IV=false;
+var TCOL={warn:["var(--rdd)","var(--red)"],question:["var(--skd)","var(--sky)"],secret:["var(--vid)","var(--vio)"],fomo:["var(--amd)","var(--amb)"],compare:["var(--vid)","var(--vio)"],luxury:["var(--amd)","var(--amb)"]};
+var TEMO={warn:"⚠️",question:"❓",secret:"🤫",fomo:"⏰",compare:"⚖️",luxury:"💎"};
+function RI(){
+  var ids=CUR.filter(function(x){return(ID==="all"||x.d===ID)&&(IH==="all"||x.h===IH)&&(!IV||x.v>=4);});
+  if(!ids.length){G("iGrid").innerHTML='<div style="grid-column:1/-1;text-align:center;padding:36px;color:var(--t3)">لا توجد أفكار — جرّب فلتراً آخر</div>';return;}
+  G("iGrid").innerHTML=ids.map(function(id,i){
+    var cl=TCOL[id.h]||["var(--s3)","var(--t2)"];
+    return'<div class="ic card"><div class="ictag" style="background:'+cl[0]+';color:'+cl[1]+'">'+(TEMO[id.h]||"💡")+" "+(CLBL[id.d]||id.d)+'</div>'+
+      '<div class="ittl">'+id.t+'</div><div class="ihook">'+id.hk+'</div>'+
+      '<div><span class="icm">⏰ '+id.tm+'</span><span class="icm">'+VD(id.v)+'</span></div>'+
+      '<div class="iwhy">💡 '+id.w+'</div>'+
+      '<div class="iact">'+
+        '<button class="btn bsky bxs" data-i="'+i+'" onclick="UI(this)">✏️ كابشن</button>'+
+        '<button class="btn bgh bxs" data-t="'+id.t+'|'+id.hk+'" onclick="CI(this)">📋 نسخ</button>'+
+        '<button class="btn bgh bxs" onclick="SW(5)">📅 خطة</button>'+
+      '</div></div>';
+  }).join("");
+}
+function FD(b){QA("#p1 .frow:first-of-type .fb[data-d]").forEach(function(x){x.classList.remove("on");});b.classList.add("on");ID=b.dataset.d;RI();}
+function FH(b){QA("#p1 .frow:nth-of-type(2) .fb[data-h]").forEach(function(x){x.classList.remove("on");});b.classList.add("on");IH=b.dataset.h;RI();}
+function TV(b){IV=!IV;b.classList.toggle("on",IV);RI();}
+function genIdeas(){CUR=IDEAS.concat([{h:"warn",d:"kids",t:"أكبر غلطة بالصيف "+new Date().getFullYear()+" — تحجز بآخر لحظة",hk:"الأذكياء حجزوا من شهرين..",w:"تحديث سنوي = بحث عضوي",v:5,tm:"7:00 ص"},{h:"question",d:"bodrum",t:"بودروم "+new Date().getFullYear()+" — ما تغيّر وما ظل نفسه؟",hk:"زرتها وعندي رأي مختلف..",w:"محتوى محدّث = Reach جديد",v:4,tm:"9:00 ص"}]).sort(function(){return Math.random()-.5;});RI();var b=document.querySelector("[onclick='genIdeas()']");if(b){var o=b.textContent;b.textContent="✅ تم!";setTimeout(function(){b.textContent=o;},1500);}}
+function expIdeas(){var t=CUR.map(function(d,i){return(i+1)+". "+d.t+"\nHook: "+d.hk+"\nالتوقيت: "+d.tm+"\n";}).join("\n");var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:"text/plain"}));a.download="ideas.txt";a.click();}
+function UI(b){var id=CUR[+b.dataset.i];if(id){SW(3);G("cd").value=(CLBL[id.d]||id.d).replace(/[🏖️🗺️🌴👦🕌📍🌲]/gu,"").trim();}}
+function CI(b){var p=b.dataset.t.split("|");CPY(p.join("\n"),b);}
+
+// ── T2: AI TIPS ──────────────────────────────────────────────────
+(function(){
+  function RC(bc,pri,ttl,bdy,imp){
+    return'<div class="card pad" style="border-right:3px solid '+bc+'">'+
+      '<div style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px;display:inline-block;margin-bottom:8px;background:'+bc+'22;color:'+bc+'">'+pri+'</div>'+
+      '<div style="font-size:13px;font-weight:700;color:var(--t1);margin-bottom:5px;line-height:1.4">'+ttl+'</div>'+
+      '<div style="font-size:12px;color:var(--t2);line-height:1.65;margin-bottom:7px">'+bdy+'</div>'+
+      '<div style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:5px;display:inline-block;background:'+bc+'22;color:'+bc+'">'+imp+'</div></div>';
+  }
+  G("recsG").innerHTML=
+    RC("var(--red)","🔴 نفّذ اليوم","ضاعف محتوى الأطفال فوراً","أطفال = 4.72% تفاعل و62K مشاهدة. أنت تنشر عنهم 8 من 38 منشور فقط (21%). رفعها لـ40% = +148K مشاهدة إضافية شهرياً بنفس الجهد.","تأثير: +148K مشاهدة/شهر")+
+    RC("var(--red)","🔴 نفّذ هذا الأسبوع","Hook تحذيري في كل ريل","4.73% متوسط تفاعل للتحذير. 11 من 38 منشور فقط يستخدمه. الباقي يبدأ بـ'تخيل' أو وصف عادي — بدّلهم فوراً.","تأثير: +35% تفاعل")+
+    RC("var(--amb)","🟡 هذا الشهر","انشر صباحاً 5-8 ص أو 16:00","ريلز 5:00-8:00 ص في بياناتك تحقق أعلى مشاهدات. Vogue Bodrum 6.7% نُشر 6:00 ص. نيكولوديون 10.17% نُشر 7:42 ص. La Blanche 7.04% نُشر 16:20.","تأثير: +40% وصول")+
+    RC("var(--amb)","🟡 هذا الشهر","قلّل إسطنبول والشمال","9 منشورات (24%) لإسطنبول والشمال بمتوسط 2.6% تفاعل. حوّل 6 منها لأطفال أو بودروم = +100% نتائج بنفس الجهد.","تأثير: +100% كفاءة")+
+    RC("var(--grn)","🟢 تحسيني","Series أسبوعية ثابتة","'أسبوع في بودروم' أو 'أفضل 5 منتجعات' — 5 أجزاء تبني توقعاً أسبوعياً وترفع المتابعين.","تأثير: +30% متابعين")+
+    RC("var(--grn)","🟢 تحسيني","راقب نسبة الحفظ أسبوعياً","الحفظ = نية حجز حقيقية. Vogue Bodrum 1.96% حفظ. La Blanche 2.14%. ركّز على هذه المحفّزات.","تأثير: +20% تحويل");
+  G("stopBox").innerHTML='<div style="font-size:12px;font-weight:700;color:var(--red);margin-bottom:9px">🚫 أوقف فوراً</div>'+
+    ["محتوى الشمال التركي — 3 منشورات بـ2.47% تفاعل فقط. وقتك ثمين.",
+     "Hook السر — أضعف نوع في بياناتك (2.33%). استبدله بتحذير أو سؤال.",
+     "'تخيل تصحى الصبح' و'تخيل تحجز' — قالب مكرر بتفاعل ضعيف (1.1%-1.4%).",
+     "نشر منشورات إسطنبول الاعتيادية — تحتاج Hook تحذيري قوي لترتفع لـ4%+."
+    ].map(function(s){return'<div style="display:flex;gap:7px;padding:5px 0;border-bottom:1px solid rgba(244,63,94,.12);font-size:12px;color:var(--t2)"><div style="width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:5px"></div>'+s+'</div>';}).join("");
+  function PI(bg,ic,h){return'<div class="pi"><div class="pico" style="background:'+bg+'">'+ic+'</div><div>'+h+'</div></div>';}
+  G("patG2").innerHTML='<div style="font-size:12px;font-weight:700;margin-bottom:9px">✅ أنجح الأنماط</div>'+
+    PI("var(--gnd)","👦","<b>أطفال + تحذير + صباح</b> — الثلاثي الذهبي (10.17% أعلى ريل)")+
+    PI("var(--gnd)","❓","<b>سؤال التقييم '1-10'</b> — 8.47% و237K مشاهدة تلقائية")+
+    PI("var(--gnd)","🏖️","<b>بودروم + FOMO</b> — 7.04% و169K (La Blanche)")+
+    PI("var(--gnd)","🎢","<b>الملاهي + الرفاهية معاً</b> — Granada و165K مشاهدة");
+  G("patB2").innerHTML='<div style="font-size:12px;font-weight:700;margin-bottom:9px">❌ الأنماط الضعيفة</div>'+
+    PI("var(--rdd)","🤫","<b>Hook السر والكشف</b> — متوسط 2.33% تفاعل في بياناتك")+
+    PI("var(--rdd)","🏙️","<b>إسطنبول بدون Hook قوي</b> — 1.8% تفاعل فقط لريلز الوصف")+
+    PI("var(--rdd)","🌲","<b>الشمال التركي عام</b> — 2.47% متوسط. يحتاج زاوية مختلفة")+
+    PI("var(--rdd)","🌆","<b>نشر مسائي 18:00+</b> — أضعف من الصباح والعصر في بياناتك");
+})();
+
+// ── T3: CAPTION FACTORY ──────────────────────────────────────────
+var HBTOPS=[].concat(P).sort(function(a,b){return b.eng-a.eng;}).slice(0,6);
+(function(){
+  G("hbnk").innerHTML=HBTOPS.map(function(r,i){
+    return'<div class="hcard" data-i="'+i+'" onclick="CHB(this)">'+
+      '<div style="font-size:10px;color:var(--sky);font-weight:700;margin-bottom:3px">'+r.eng+'% · '+(CLBL[r.cat]||r.cat)+' · '+r.date+'</div>'+
+      '<div style="font-size:12px;font-weight:600;color:var(--t1);margin-bottom:5px;line-height:1.4">'+r.cap.slice(0,80)+'…</div>'+
+      '<button class="btn bgh bxs">📋 نسخ</button></div>';
+  }).join("");
+})();
+function CHB(el){var r=HBTOPS[+el.dataset.i];if(r)CPY(r.cap,el.querySelector(".btn"));}
+function GC(){
+  var dest=G("cd").value||"الوجهة",tp=G("ct").value,ctaV=G("cc").value;
+  var notes=G("cn").value;
+  var feats=notes?notes.split("\n").filter(Boolean):["دخول مجاني للملاهي","إقامة شاملة كلياً","شاطئ خاص وهادئ"];
+  var cta={com:'اكتب "'+dest+'" بالكومنت وبوصّلك التفاصيل 📩',wa:"تواصل واتساب +905525109904 📱",sav:"احفظ الريل ترجع إليه وقت الحجز 🔖",shr:"شارك مع شخص يستاهل هالإجازة 📤"}[ctaV];
+  var f1=feats[0]||"",f2=feats[1]||"",f3=feats[2]||"";
+  var TMPL={
+    warn:"أكبر غلطة بتعملها عيلتك عند حجز "+dest+"! ❌\n\n90% من الناس بيحجزوا بآخر لحظة ويدفعون أكتر بـ40%..\nالأذكياء حجزوا من 3 أشهر بأقل سعر!\n\n"+dest+" ✓\n→ "+f1+"\n→ "+f2+"\n→ "+f3+"\n\n"+cta+"\n#mybedroom_travel #سياحة_تركيا #صيف2026",
+    question:"من 1 إلى 10 كيف تقيّم "+dest+"؟ 🤔\n\nشاركني رأيك بالتعليقات!\nوبعد ما تصوّت — رح أشاركك تجربتي الحقيقية..\n\n"+dest+":\n✓ "+f1+"\n✓ "+f2+"\n✓ "+f3+"\n\n"+cta,
+    luxury:dest+" — حيث تجد الرفاهية الحقيقية 💎\n\nليس كل فخامة متساوية..\n\n✓ "+f1+"\n✓ "+f2+"\n✓ "+f3+"\n\n"+cta+"\n#mybedroom_travel",
+    compare:"أيش أفضل؟ "+dest+" أو المنافس ⚖️\n\nجربت الاثنين وعندي رأي مختلف..\n\n"+dest+":\n✓ "+f1+"\n✓ "+f2+"\n✗ "+f3+"\n\n"+cta,
+    family:dest+" — الاختيار الأذكى للعائلات 👨‍👩‍👦\n\nما كنت متوقع هالمستوى..\n\n✓ "+f1+"\n✓ "+f2+"\n✓ "+f3+"\n\n"+cta+"\n#mybedroom_travel",
+    couple:dest+" — شهر العسل المثالي 💑\n\n✓ "+f1+"\n✓ "+f2+"\n✓ "+f3+"\n\n"+cta,
+    secret:dest+" — السر الذي لا يعرفه الكثيرون 🤫\n\nزرته واكتشفت..\n\n✓ "+f1+"\n✓ "+f2+"\n✓ "+f3+"\n\n"+cta,
+    fomo:dest+" — الموسم يبدأ والأسعار ترتفع ⏰\n\nكل يوم تتأخر = سعر أعلى..\n\n✓ "+f1+"\n✓ "+f2+"\n✓ "+f3+"\n\n"+cta,
+  };
+  var cap=TMPL[tp]||TMPL.warn;
+  G("capOut").innerHTML='<div class="capbox"><div class="captxt" id="gcap"></div><div style="display:flex;gap:7px;margin-top:10px"><button class="btn bamb bsm" onclick="CCap(this)">📋 نسخ</button><button class="btn bgh bsm" onclick="GC()">🔄 أعد التوليد</button></div><div style="margin-top:9px;padding:8px 10px;background:var(--gnd);border-radius:var(--r2);font-size:11px;color:var(--t2)">💡 أفضل وقت: 5-8 ص أو 16:00 بناءً على بياناتك</div></div>';
+  G("gcap").textContent=cap;
+}
+function CCap(b){var e=G("gcap");if(e)CPY(e.textContent,b);}
+
+// ── T4: HOOK GEN ─────────────────────────────────────────────────
+var HTPLS={
+  warn:function(t){return["أكبر غلطة بتعملها عند حجز "+t+" — لا تكررها!","لا تحجز "+t+" قبل ما تشوف هذا الفيديو!","تحذير لكل من يخطط لزيارة "+t+" هذا الصيف","90% من السياح بيقعون في هالفخ في "+t+"!","الغلطة اللي بتكلفك غالٍ في "+t+" — تجنبها"];},
+  question:function(t){return["من 1 إلى 10 كيف تقيّم "+t+"؟ شاركني!","أيش أول شيء تعمله لما توصل "+t+"؟",""+t+" أو المالديف — ما رأيك؟","جربت "+t+"؟ وصف تجربتك بكلمة واحدة!","أيش اللي فاتك تعمله في "+t+"؟"];},
+  secret:function(t){return["السر الذي يجعل "+t+" مختلفاً عن كل ما رأيته",""+t+" — الشيء الخفي اللي ما على السوشيال","لماذا "+t+" محجوزة قبل الموسم بشهرين","ما يشاركونه عن "+t+" vs الواقع الحقيقي",""+t+" — سره اللي لا يعرفه السياح"];},
+  fomo:function(t){return["آخر فرصة لـ "+t+" هذا الصيف — لا تفوتك!","الموسم يبدأ والأسعار ترتفع في "+t+"!","كل يوم تتأخر في "+t+" = سعر أعلى!","من حجز "+t+" مبكراً دفع أقل بـ40%!",""+t+" — الأذكياء حجزوا من شهرين"];},
+  luxury:function(t){return["الرفاهية الحقيقية في "+t+" — هذا ما لا تعرفه",""+t+" — حيث الخدمة تتجاوز كل التوقعات","تجربة "+t+" غيّرت مفهومي للفخامة كلياً","في "+t+" فهمت لماذا الفرق يستحق السعر",""+t+" — المعيار الذي يقيس به كل شيء"];},
+  compare:function(t){return[""+t+" vs المنافس — الفرق بعد تجربة شخصية","جربت الاثنين وعندي رأي مختلف عن الجميع في "+t,""+t+" مقابل ضعف السعر — أيش تختار؟","قبل وبعد "+t+" — هذا الفرق لم أتوقعه!",""+t+" أو بديله — الجواب صدمني"];}
+};
+var HSEL=["all"],HLAST=[];
+function HT(b){if(b.dataset.ht==="all"){HSEL=["all"];QA("#htf .fb").forEach(function(x){x.classList.remove("on");});b.classList.add("on");}else{var af=document.querySelector("#htf .fb[data-ht='all']");if(af)af.classList.remove("on");b.classList.toggle("on");HSEL=QA("#htf .fb.on").map(function(x){return x.dataset.ht;}).filter(Boolean);if(!HSEL.length){HSEL=["all"];if(af)af.classList.add("on");}}}
+function GH(){
+  var topic=G("htopic").value||"الوجهة",cnt=+(G("hcnt").value)||10;
+  var types=HSEL[0]==="all"?Object.keys(HTPLS):HSEL.filter(function(x){return HTPLS[x];});
+  var hs=[];
+  types.forEach(function(tp){if(HTPLS[tp])HTPLS[tp](topic).forEach(function(h){hs.push({txt:h,tp:tp});});});
+  hs=hs.sort(function(){return Math.random()-.5;}).slice(0,cnt);
+  HLAST=hs;
+  var TC={warn:["var(--rdd)","var(--red)","⚠️",5],question:["var(--skd)","var(--sky)","❓",5],secret:["var(--vid)","var(--vio)","🤫",2],fomo:["var(--amd)","var(--amb)","⏰",4],luxury:["var(--vid)","var(--vio)","💎",3],compare:["var(--vid)","var(--vio)","⚖️",4]};
+  G("hout").innerHTML=hs.map(function(h,i){
+    var c=TC[h.tp]||["var(--s3)","var(--t2)","💡",3];
+    return'<div class="hcard" data-i="'+i+'" onclick="CHK(this)"><div class="hnum">'+("0"+(i+1)).slice(-2)+'</div><div class="htxt">'+h.txt+'</div>'+
+      '<div style="display:flex;align-items:center;justify-content:space-between;margin-top:5px"><div style="display:flex;align-items:center;gap:7px"><span style="font-size:10px;padding:2px 6px;border-radius:5px;font-weight:700;background:'+c[0]+';color:'+c[1]+'">'+c[2]+' '+h.tp+'</span>'+VD(c[3])+'</div><button class="btn bgh bxs">📋</button></div></div>';
+  }).join("");
+}
+function CHK(card){var h=HLAST[+card.dataset.i];if(h)CPY(h.txt,card.querySelector(".btn"));}
+function CAH(){if(!HLAST.length)return;var b=document.querySelector("[onclick='CAH()']");CPY(HLAST.map(function(h,i){return(i+1)+". "+h.txt;}).join("\n"),b);}
+
+// ── T5: WEEK PLANNER ─────────────────────────────────────────────
+var WPLAN=[
+  {n:"السبت",cls:"",ty:"تيزر",tp:"سؤال يبني فضول للأسبوع",tm:"10:00 ص",cta:"احفظ"},
+  {n:"الأحد",cls:"",ty:"بودروم كشف",tp:"منتجع ما تشوفه على Booking",tm:"16:00",cta:"اكتب بودروم"},
+  {n:"الإثنين",cls:"best",ty:"أطفال تحذيري ⭐",tp:"أكبر غلطة عيلتك هالصيف",tm:"7:00-8:00 ص ⭐",cta:"شارك"},
+  {n:"الثلاثاء",cls:"best",ty:"بودروم FOMO ⭐",tp:"آخر غرف بودروم — مين استحق",tm:"7:00 ص ⭐",cta:"اكتب بودروم"},
+  {n:"الأربعاء",cls:"",ty:"أنطاليا/فتحية",tp:"مقارنة منتجعين بعد تجربة",tm:"16:00",cta:"صوّت"},
+  {n:"الخميس",cls:"",ty:"تصويت تفاعلي",tp:"من 1-10 كيف تقيّم؟",tm:"10:00 ص",cta:"اترك تعليق"},
+  {n:"الجمعة",cls:"",ty:"سؤال عام",tp:"ما الوجهة المثالية لصيفك؟",tm:"18:00",cta:"شارك"},
+];
+(function(){
+  G("wkGrid").innerHTML=WPLAN.map(function(d){
+    return'<div class="day '+(d.cls||"")+'"><div class="dname">'+d.n+(d.cls==="best"?" ⭐":"")+'</div>'+
+      '<div class="dtype">'+d.ty+'</div><div class="dtopic">'+d.tp+'</div>'+
+      '<div class="dtime">⏰ '+d.tm+'</div><div class="dcta">'+d.cta+'</div></div>';
+  }).join("");
+  var CAPS=[
+    ["الإثنين — أطفال تحذيري","أكبر غلطة بتعملها عيلتك هالصيف! ❌\n\nالكل بيحجز نيكولوديون بآخر لحظة ويدفع أكتر بـ40%!\nالأذكياء حجزوا من 3 شهور بأقل سعر.\n\nنيكولوديون ✓\n→ دخول مجاني لاند أوف ليجندز\n→ عروض يومية للأطفال\n→ كل وجبة شاملة\n\nاكتب \"أطفال\" بالكومنت وبوصّلك التفاصيل 📩\n#mybedroom_travel #nickelodeon #صيف2026"],
+    ["الثلاثاء — بودروم FOMO","آخر غرف بودروم للصيف — مين استحق؟ ⏰\n\nتحذير من قلب الحدث!\nبودروم حالياً Full، والغرف بتطير كل يوم.\nلا تتأخر — كل يوم تتأخر = سعر أعلى!\n\nعندنا غرف حصرية بأفضل سعر.\nاكتب \"بودروم\" بالكومنت وراح نرسلك الأسعار فوراً 📩\n#mybedroom_travel #بودروم #صيف2026"],
+    ["الخميس — تصويت","من 1 إلى 10 كيف تقيّم هذا المنتجع؟ 🤔\n\nشاركني رأيك بالتعليقات!\nوبعد ما تصوّت — رح أشاركك تجربتي الحقيقية..\n\nA — نيكولوديون 🍍\nB — لاند أوف ليجندز 🏰\nC — غرناطة لاكشري 🎢\n\n#mybedroom_travel #سياحة_تركيا"],
+  ];
+  G("wkCaps").innerHTML=CAPS.map(function(c,i){
+    return'<div class="card" style="padding:12px 15px;border:1px solid var(--skb);margin-bottom:8px">'+
+      '<div style="font-size:10px;color:var(--sky);font-weight:700;margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px">'+c[0]+'</div>'+
+      '<div style="font-size:12px;color:var(--t1);line-height:1.85;margin-bottom:9px" id="wc'+i+'"></div>'+
+      '<button class="btn bsky bsm" data-i="'+i+'" onclick="CWC(this)">📋 نسخ</button></div>';
+  }).join("");
+  CAPS.forEach(function(c,i){G("wc"+i).textContent=c[1];});
+  DC();
+})();
+function CWC(b){var e=G("wc"+b.dataset.i);if(e)CPY(e.textContent,b);}
+function autoW(){alert("تم الملء الذكي ✅");}
+function EW(){var t=WPLAN.map(function(d){return d.n+": "+d.ty+"\n"+d.tp+"\nالوقت: "+d.tm;}).join("\n\n");var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:"text/plain"}));a.download="week.txt";a.click();}
+var CAT_AVG={kids:62891,bodrum:75783,antalya:10549,istanbul:10214,fethiye:12816,north:7263};
+function DC(){
+  var n=+(G("cln").value)||4,cat=G("ccat").value;
+  var base=CAT_AVG[cat]||20000;
+  var totV=Math.round(n*base);
+  var totE=(CS[cat]?CS[cat].avg_eng:3.5).toFixed(1);
+  var e=G("calcR");
+  if(e){e.style.display="block";e.innerHTML="";var d=document.createElement("div");d.innerHTML="📊 "+n+" ريلز "+(CLBL[cat]||cat)+" → مشاهدات: <b>"+F(totV)+"</b> · تفاعل: <b>"+totE+"%</b> · مشاركات: <b>"+F(Math.round(totV*0.027))+"</b> · حفظ: <b>"+F(Math.round(totV*0.019))+"</b>";e.appendChild(d);}
+}
+
+// ── T6: AB TEST ──────────────────────────────────────────────────
+var ABHI=[];
+function RAB(){
+  var aH=G("aah").value||"A",bH=G("abh").value||"B";
+  var aS=(+(G("aad").value))*(+(G("aat").value))*(+(G("aatm").value));
+  var bS=(+(G("abd").value))*(+(G("abt").value))*(+(G("abtm").value));
+  aS=+aS.toFixed(2);bS=+bS.toFixed(2);
+  var win=aS>bS?"A":"B";
+  var wc=win==="A"?"var(--sky)":"var(--vio)";
+  G("abRes").innerHTML='<div style="background:'+(win==="A"?"var(--skd)":"var(--vid)")+';border:1px solid '+(win==="A"?"var(--skb)":"var(--vib)")+';border-radius:var(--r);padding:15px 17px;margin-bottom:12px">'+
+    '<div style="font-size:14px;font-weight:800;color:'+wc+';margin-bottom:10px">🏆 الفائز: النسخة '+win+' — أفضل بـ '+Math.abs(aS-bS).toFixed(2)+' نقطة</div>'+
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:10px">'+
+      '<div style="padding:11px;background:rgba(0,0,0,.2);border-radius:var(--r2)"><div style="font-size:10px;color:var(--sky);font-weight:700;margin-bottom:4px">النسخة A</div><div style="font-size:11px;color:var(--t2);margin-bottom:5px">'+aH.slice(0,50)+'</div><div style="font-size:21px;font-weight:900;color:'+(win==="A"?"var(--grn)":"var(--t2)")+'">'+aS+'</div></div>'+
+      '<div style="padding:11px;background:rgba(0,0,0,.2);border-radius:var(--r2)"><div style="font-size:10px;color:var(--vio);font-weight:700;margin-bottom:4px">النسخة B</div><div style="font-size:11px;color:var(--t2);margin-bottom:5px">'+bH.slice(0,50)+'</div><div style="font-size:21px;font-weight:900;color:'+(win==="B"?"var(--grn)":"var(--t2)")+'">'+bS+'</div></div>'+
+    '</div><div style="font-size:12px;color:var(--t2);line-height:1.6">النقاط = فئة × Hook × وقت — مبنية على 38 منشور حقيقي.</div></div>';
+  ABHI.unshift({win:win,aH:aH.slice(0,35),bH:bH.slice(0,35),aS:aS,bS:bS,d:new Date().toLocaleDateString("ar")});
+  G("abHist").innerHTML=ABHI.map(function(h){return'<div class="card pad" style="display:flex;align-items:center;gap:10px;margin-bottom:7px"><span style="font-size:15px">'+(h.win==="A"?"🔵":"🟣")+'</span><div style="flex:1;min-width:0"><div style="font-size:11px;font-weight:600">الفائز: '+h.win+'</div><div style="font-size:10px;color:var(--t3)">'+h.aH+' vs '+h.bH+'</div></div><div style="font-size:11px;color:var(--t2)">'+h.d+'</div><div style="font-size:13px;font-weight:700;color:var(--grn)">'+(h.win==="A"?h.aS:h.bS)+'</div></div>';}).join("")||'<div style="text-align:center;padding:16px;color:var(--t3);font-size:12px">لا يوجد بعد</div>';
+}
+
+// ── T7: CHARTS ───────────────────────────────────────────────────
+var CMODE="all";
+function CM(b){QA("#p7 .frow .fb[data-cm]").forEach(function(x){x.classList.remove("on");});b.classList.add("on");CMODE=b.dataset.cm;if(CB)BC();}
+function BC(){
+  var data;
+  if(CMODE==="bodrum")data=[].concat(P).filter(function(r){return r.cat==="bodrum";}).sort(function(a,b){return a.date>b.date?1:-1;});
+  else if(CMODE==="kids")data=[].concat(P).filter(function(r){return r.cat==="kids";}).sort(function(a,b){return a.date>b.date?1:-1;});
+  else if(CMODE==="top10")data=[].concat(P).sort(function(a,b){return b.eng-a.eng;}).slice(0,10);
+  else data=[].concat(P).sort(function(a,b){return a.date>b.date?1:-1;});
+  if(!data.length)return;
+  // BAR
+  (function(){var e=G("bSvg");if(!e||!data.length)return;
+    var W=e.parentElement.clientWidth||550,H=200,P2={t:8,r:8,b:24,l:42};
+    var iW=W-P2.l-P2.r,iH=H-P2.t-P2.b;
+    var mx=data.reduce(function(m,r){return Math.max(m,r.views);},1);
+    var bW=Math.max(4,Math.floor(iW/data.length)-3);
+    var bars="",grid="";
+    data.forEach(function(r,i){
+      var c=r.eng>=6?"#10b981":r.eng>=2?"#06b6d4":"#f43f5e";
+      var bh=Math.max(2,Math.round(iH*r.views/mx));
+      bars+='<rect x="'+(P2.l+Math.round(i*(iW/data.length)))+'" y="'+(P2.t+iH-bh)+'" width="'+bW+'" height="'+bh+'" fill="'+c+'" opacity=".82" rx="2"><title>'+r.cap.slice(0,35)+" | "+F(r.views)+" | "+r.eng+"%</title></rect>";
+    });
+    [0,.25,.5,.75,1].forEach(function(t){var y=P2.t+iH-Math.round(iH*t);grid+='<line x1="'+P2.l+'" y1="'+y+'" x2="'+(W-P2.r)+'" y2="'+y+'" stroke="rgba(255,255,255,.04)"/><text x="'+(P2.l-4)+'" y="'+(y+4)+'" text-anchor="end" font-size="9" fill="#3e4450">'+F(Math.round(mx*t))+'</text>';});
+    e.innerHTML='<svg viewBox="0 0 '+W+" "+H+'" width="100%">'+grid+bars+'</svg>';
+  })();
+  // LINE
+  (function(){var e=G("lSvg");if(!e||data.length<2)return;
+    var W=e.parentElement.clientWidth||550,H=170,P2={t:8,r:26,b:18,l:38};
+    var iW=W-P2.l-P2.r,iH=H-P2.t-P2.b;
+    var vals=data.map(function(r){return r.eng;});
+    var mx=Math.max.apply(null,vals)*1.1||1;
+    var pts=vals.map(function(v,i){return[P2.l+Math.round(i*iW/(vals.length-1)),P2.t+iH-Math.round(v/mx*iH)];});
+    var grid="",dots="";
+    [0,.25,.5,.75,1].forEach(function(t){var y=P2.t+iH-Math.round(t*iH);grid+='<line x1="'+P2.l+'" y1="'+y+'" x2="'+(W-P2.r)+'" y2="'+y+'" stroke="rgba(255,255,255,.04)"/><text x="'+(P2.l-4)+'" y="'+(y+4)+'" text-anchor="end" font-size="9" fill="#3e4450">'+(mx*t).toFixed(1)+'%</text>';});
+    pts.forEach(function(pt,i){var c=pf(data[i].eng)==="s"?"#10b981":pf(data[i].eng)==="a"?"#06b6d4":"#f43f5e";dots+='<circle cx="'+pt[0]+'" cy="'+pt[1]+'" r="4.5" fill="'+c+'" stroke="#06080b" stroke-width="1.5"><title>'+data[i].date+" — "+data[i].eng+"%</title></circle>";});
+    var poly=pts.map(function(p){return p.join(",");}).join(" ");
+    var avgY=P2.t+iH-Math.round(S.avg_eng/mx*iH);
+    e.innerHTML='<svg viewBox="0 0 '+W+" "+H+'" width="100%"><defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#06b6d4"/><stop offset="1" stop-color="#06b6d4" stop-opacity="0"/></linearGradient></defs>'+grid+'<path d="M'+pts[0][0]+","+(P2.t+iH)+" L"+poly+" L"+pts[pts.length-1][0]+","+(P2.t+iH)+'Z" fill="url(#lg)" opacity=".12"/><polyline points="'+poly+'" fill="none" stroke="#06b6d4" stroke-width="2.5" stroke-linejoin="round"/><line x1="'+P2.l+'" y1="'+avgY+'" x2="'+(W-P2.r)+'" y2="'+avgY+'" stroke="#f59e0b" stroke-dasharray="4,3" stroke-width="1" opacity=".6"/><text x="'+(W-P2.r+3)+'" y="'+(avgY+4)+'" font-size="9" fill="#f59e0b">avg</text>'+dots+'</svg>';
+  })();
+  // CAT
+  (function(){var e=G("cSvg");if(!e)return;
+    var d2=Object.keys(CS).map(function(k){return{k:k,e:CS[k].avg_eng};}).sort(function(a,b){return b.e-a.e;});
+    var W=e.parentElement.clientWidth||260,H=180,P2={t:8,r:44,b:8,l:60};
+    var iW=W-P2.l-P2.r,iH=H-P2.t-P2.b;
+    var bH=Math.floor(iH/d2.length)-4;
+    var mx=d2.reduce(function(m,d){return Math.max(m,d.e);},1);
+    var HEX={sky:"#06b6d4",grn:"#10b981",amb:"#f59e0b",red:"#f43f5e",vio:"#8b5cf6"};
+    var bars="";
+    d2.forEach(function(d,i){var bw=Math.round(iW*d.e/mx),y=P2.t+i*(bH+4);
+      var cvar=CCLR[d.k]||"var(--t2)";
+      var hex=cvar.replace("var(--","").replace(")","");
+      var c=HEX[hex]||"#7e8490";
+      bars+='<rect x="'+P2.l+'" y="'+y+'" width="'+bw+'" height="'+bH+'" fill="'+c+'" opacity=".82" rx="3"/><text x="'+(P2.l-4)+'" y="'+(y+bH/2+4)+'" text-anchor="end" font-size="9" fill="#7e8490">'+((CLBL[d.k]||d.k).replace(/[🏖️🗺️🌴👦🕌📍🌲]/gu,"").trim()).slice(0,6)+'</text><text x="'+(P2.l+bw+4)+'" y="'+(y+bH/2+4)+'" font-size="9" fill="'+c+'" font-weight="700">'+d.e+'%</text>';
+    });
+    e.innerHTML='<svg viewBox="0 0 '+W+" "+H+'" width="100%">'+bars+'</svg>';
+  })();
+  // HOOK BAR
+  (function(){var e=G("hkSvg");if(!e)return;
+    var d2=Object.keys(HS).map(function(k){return{k:k,e:HS[k].avg_eng,n:HS[k].n};}).sort(function(a,b){return b.e-a.e;});
+    var W=e.parentElement.clientWidth||260,H=140,P2={t:8,r:44,b:8,l:60};
+    var iW=W-P2.l-P2.r,iH=H-P2.t-P2.b;
+    var bH=Math.floor(iH/d2.length)-4;
+    var mx=d2.reduce(function(m,d){return Math.max(m,d.e);},1);
+    var bars="";
+    d2.forEach(function(d,i){var bw=Math.round(iW*d.e/mx),y=P2.t+i*(bH+4);
+      var c=CBH[d.k]||"#7e8490";
+      bars+='<rect x="'+P2.l+'" y="'+y+'" width="'+bw+'" height="'+bH+'" fill="'+c+'" opacity=".82" rx="3"/><text x="'+(P2.l-4)+'" y="'+(y+bH/2+4)+'" text-anchor="end" font-size="9" fill="#7e8490">'+d.k+'</text><text x="'+(P2.l+bw+4)+'" y="'+(y+bH/2+4)+'" font-size="9" fill="'+c+'" font-weight="700">'+d.e+'%</text>';
+    });
+    e.innerHTML='<svg viewBox="0 0 '+W+" "+H+'" width="100%">'+bars+'</svg>';
+  })();
+}
+
+// ── T8: CONTENT RATING ───────────────────────────────────────────
+var DEST_S={kids:4.72,bodrum:3.99,fethiye:3.06,istanbul:3.02,antalya:2.78,north:2.47};
+var HOOK_S={warn:1.45,question:1.4,fomo:1.35,compare:1.2,luxury:1.1,secret:0.9};
+var TIME_S={16:1.4,7:1.3,12:1.0,20:0.85};
+function RATE(){
+  var hook=G("rhook").value||"",dest=G("rdest").value,tp=G("rtype").value,time=+(G("rtime").value);
+  var score=(DEST_S[dest]||3)*(HOOK_S[tp]||1)*(TIME_S[time]||1);
+  var pct=Math.min(Math.round(score/10*100),100);
+  var grade=score>=7?"A+ ممتاز":score>=5.5?"A جيد جداً":score>=4?"B جيد":score>=3?"C مقبول":"D ضعيف";
+  var gc=score>=7?"var(--grn)":score>=5.5?"var(--sky)":score>=4?"var(--amb)":score>=3?"var(--red)":"var(--red)";
+  var tips=[];
+  if(HOOK_S[tp]<1.25)tips.push("💡 جرّب Hook تحذيري أو سؤال — سيرفع النتيجة +35%");
+  if(TIME_S[time]<1.2)tips.push("⏰ انشر 5-8 ص أو 16:00 بدلاً من الوقت المختار");
+  if(DEST_S[dest]<3)tips.push("🗺️ هذه الفئة ضعيفة في بياناتك — فكّر في أطفال أو بودروم");
+  G("rateOut").innerHTML=
+    '<div style="text-align:center;padding:20px;background:'+gc+'22;border:1px solid '+gc+'44;border-radius:var(--r);margin-bottom:14px">'+
+      '<div style="font-size:36px;font-weight:900;color:'+gc+'">'+grade+'</div>'+
+      '<div style="font-size:14px;color:var(--t2);margin-top:4px">النقاط: '+score.toFixed(2)+'</div>'+
+      '<div style="height:8px;background:var(--b1);border-radius:4px;margin:10px 0;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:'+gc+'"></div></div>'+
+      '<div style="font-size:11px;color:var(--t3)">'+pct+'% من إمكانية التفاعل</div>'+
+    '</div>'+
+    (hook?'<div style="background:var(--s2);border-radius:var(--r2);padding:10px 12px;font-size:12px;color:var(--t2);margin-bottom:12px;border-right:3px solid '+gc+'">Hook: '+hook+'</div>':'')+
+    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">'+
+      RBAR2("الفئة",DEST_S[dest]/6,(CLBL[dest]||dest).replace(/[🏖️🗺️🌴👦🕌📍🌲]/gu,"").trim())+
+      RBAR2("نوع Hook",HOOK_S[tp]/1.5,tp)+
+      RBAR2("التوقيت",TIME_S[time]/1.4,time+":00")+
+    '</div>'+
+    (tips.length?'<div style="background:var(--amd);border:1px solid var(--ambb);border-radius:var(--r);padding:12px 14px"><div style="font-size:11px;font-weight:700;color:var(--amb);margin-bottom:7px">💡 توصيات لتحسين النتيجة</div>'+tips.map(function(t){return'<div style="font-size:12px;color:var(--t2);padding:4px 0;border-bottom:1px solid rgba(245,158,11,.12)">'+t+'</div>';}).join("")+'</div>':'');
+}
+function RBAR2(l,v,sub){var pct=Math.min(Math.round(v*100),100);var c=pct>=70?"var(--grn)":pct>=40?"var(--amb)":"var(--red)";return'<div style="background:var(--s2);border-radius:var(--r2);padding:9px 11px"><div style="font-size:10px;color:var(--t2);margin-bottom:4px">'+l+'</div><div style="height:4px;background:var(--b1);border-radius:2px;overflow:hidden;margin-bottom:4px"><div style="height:100%;width:'+pct+'%;background:'+c+'"></div></div><div style="font-size:10px;font-weight:700;color:'+c+'">'+sub+'</div></div>';}
+// Cat compare
+(function(){
+  G("catCmp").innerHTML=Object.keys(CS).sort(function(a,b){return CS[b].avg_eng-CS[a].avg_eng;}).map(function(k){
+    var s=CS[k],c=CCLR[k]||"var(--t2)";
+    var hex={sky:"#06b6d4",grn:"#10b981",amb:"#f59e0b",red:"#f43f5e",vio:"#8b5cf6"}[c.replace("var(--","").replace(")","")]||"#7e8490";
+    return'<div class="card rcard"><div style="font-size:12px;font-weight:700;margin-bottom:9px">'+(CLBL[k]||k)+' · '+s.n+' منشور</div>'+
+      RROW2("التفاعل",s.avg_eng/7,s.avg_eng+"%",hex)+RROW2("المشاهدات",s.avg_views/100000,F(s.avg_views),hex)+RROW2("المشاركات",s.avg_shares/2000,F(s.avg_shares),hex)+
+      '<div style="font-size:11px;font-weight:700;margin-top:8px;color:'+(s.avg_eng>=4.5?"var(--grn)":s.avg_eng<3?"var(--red)":"var(--amb)")+'">'+(s.avg_eng>=4.5?"↑ ركّز هنا":s.avg_eng<3?"↓ قلّل":"◆ حافظ")+'</div></div>';
+  }).join("");
+})();
+function RROW2(l,pct,val,c){return'<div class="rrow"><div class="rlbl">'+l+'</div><div class="rbar"><div class="rbfill" style="width:'+Math.min(pct*100,100)+'%;background:'+c+'"></div></div><div class="rval" style="color:'+c+'">'+val+'</div></div>';}
+
+// ── T9: SUCCESS BANK ─────────────────────────────────────────────
+(function(){
+  var TOP=[].concat(P).sort(function(a,b){return b.eng-a.eng;}).slice(0,10);
+  var WHY={"10.17":"تحذير + أطفال + 7:42 ص = المعادلة الذهبية لحسابك","8.47":"سؤال التقييم 1-10 بدون مجهود = فضول تلقائي + 237K مشاهدة","8.44":"تحذير + أطفال + لاند أوف ليجندز + 7:42 ص","7.04":"FOMO + بودروم + La Blanche + 16:20 = نية حجز فورية","6.7":"تحذير عاطفي + Vogue Bodrum + أطفال + 6:02 ص","3.84":"غرناطة + أطفال + مشكلة حقيقية (الكابوس) = تفاعل عاطفي","3.64":"تصويت + ملاهي + سؤال مفتوح = تعليقات ضخمة"};
+  var SB=G("succBank");
+  SB.innerHTML=TOP.map(function(r,i){
+    var why=WHY[String(r.eng)]||"Hook قوي + فئة مناسبة + توقيت صح";
+    var c=CCLR[r.cat]||"var(--t2)";
+    return'<div class="card" style="padding:14px 16px;border-right:3px solid '+c+'">'+
+      '<div style="display:flex;align-items:flex-start;gap:13px;flex-wrap:wrap">'+
+        '<div style="background:'+c+'22;border:1px solid '+c+'44;border-radius:10px;padding:8px 11px;text-align:center;min-width:66px;flex-shrink:0">'+
+          '<div style="font-size:20px;font-weight:900;color:'+c+'">'+r.eng+'%</div>'+
+          '<div style="font-size:9px;color:var(--t3);margin-top:2px">تفاعل</div></div>'+
+        '<div style="flex:1;min-width:180px">'+
+          '<div style="display:flex;align-items:center;gap:7px;margin-bottom:4px;flex-wrap:wrap">'+
+            '<span style="font-size:10px;color:var(--t3)">'+r.date+'</span>'+
+            '<span style="font-size:10px;color:'+c+';font-weight:700">'+(CLBL[r.cat]||r.cat)+'</span>'+
+            '<span style="font-size:10px;padding:1px 6px;border-radius:5px;background:'+(CBH[r.hook]||"#333")+'33;color:'+(CBH[r.hook]||"#999")+';font-weight:700">'+r.hook+'</span>'+
+          '</div>'+
+          '<a href="'+r.url+'" target="_blank" style="font-size:13px;font-weight:700;color:var(--t1);margin-bottom:7px;display:block;line-height:1.4;text-decoration:none">'+r.cap.slice(0,80)+'…</a>'+
+          '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px">'+
+            '<span style="font-size:11px;color:var(--t2)">👁 <b>'+F(r.views)+'</b></span>'+
+            '<span style="font-size:11px;color:var(--t2)">📤 <b>'+F(r.shares)+'</b></span>'+
+            '<span style="font-size:11px;color:var(--t2)">💾 <b>'+F(r.saved)+'</b></span>'+
+            '<span style="font-size:11px;color:var(--t2)">🔥 <b>'+F(r.inter)+'</b></span>'+
+          '</div>'+
+          '<div style="padding:7px 10px;background:var(--gnd);border-radius:var(--r2);font-size:11px;color:var(--t2);margin-bottom:8px"><b style="color:var(--grn)">لماذا نجح:</b> '+why+'</div>'+
+          '<div style="display:flex;gap:6px;flex-wrap:wrap">'+
+            '<button class="btn bsky bxs" data-cap="'+r.cap.slice(0,60)+'" onclick="CPY(this.dataset.cap,this)">📋 نسخ</button>'+
+            '<a href="'+r.url+'" target="_blank" class="btn bgh bxs">🔗 شاهد</a>'+
+          '</div></div></div></div>';
+  }).join("");
+  window._TOP10=TOP;
+})();
+
+// INIT
+RI();BC();
+})();
+</script>
+</body>
+</html>
