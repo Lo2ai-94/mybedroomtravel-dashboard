@@ -65,3 +65,27 @@ def save(payload):
     h={"apikey":SK,"Authorization":f"Bearer {SK}","Content-Type":"application/json","Prefer":"resolution=merge-duplicates"}
     try:
         r=requests.post(f"{SU}/rest/v1/dashboard_data",headers=h,json={"id":"mybedroom_latest","data":json.dumps(payload,ensure_ascii=True),"updated_at":datetime.utcnow().isoformat(),"posts_count":payload["stats"]["n"],"avg_eng":payload["stats"]["avg_eng"],"total_views":payload["stats"]["total_views"]},timeout=30)
+        print(f"Supabase:{r.status_code}")
+    except Exception as e:
+        print(f"Supabase err:{e}")
+    json.dump(payload,open("dashboard_data.json","w"),ensure_ascii=True)
+
+def build(payload):
+    if not os.path.exists("dashboard_template.html"):return
+    b64=base64.b64encode(json.dumps(payload,ensure_ascii=True).encode()).decode()
+    html=open("dashboard_template.html",encoding="utf-8").read().replace("XDATAX",b64)
+    os.makedirs("docs",exist_ok=True)
+    open("docs/index.html","w",encoding="utf-8").write(html)
+    print(f"Dashboard built: {len(html)//1024}KB")
+
+raw=fetch()
+if raw:
+    p=process(raw)
+    if p:
+        save(p)
+        build(p)
+        print("✅ تم!")
+    else:
+        print("❌ فشل");exit(1)
+else:
+    print("❌ لا بيانات");exit(1)
